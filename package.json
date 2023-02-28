@@ -16,5 +16,15 @@
         "resolve-url-loader": "^4.0.0",
         "sass": "^1.56.1",
         "vite": "^4.0.0"
+    },
+    "dependencies": {
+        "cleave.js": "^1.6.0",
+        "numeral": "^2.0.6"
+    },
+    "autoload": {
+        "files": [
+            "app/Helpers/UserHelpers.php"
+        ]
     }
+    
 }

@@ -56,7 +56,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="/" class="brand-link">
+        <a href="{{ route('dashboard') }}" class="brand-link">
             <img src="{{ asset('images/gestaac.png') }}" alt="AdminLTE Logo" class="logo">
             <span class="brand-text font-weight-light">Enrollment System</span>
         </a>
@@ -96,8 +96,14 @@
 
 @vite('resources/js/app.js')
 <!-- AdminLTE App -->
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="{{ asset('js/adminlte.min.js') }}" defer></script>
 <script src="{{ asset('js/custom.js') }}" defer></script>
+<script src="{{ asset('js/cleave.js') }}"></script>
+<script src="{{ asset('js/cleave.min.js') }}"></script>
+
+
 
 
 @yield('scripts')

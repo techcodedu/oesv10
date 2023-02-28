@@ -1,10 +1,20 @@
 @extends('layouts.guest')
 
 @section('content')
+<style>
+    .home-link {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    color: #007bff;
+}
+</style>
+<a href="/" class="home-link"><i class="fas fa-home"></i></a>
     <div class="card-body login-card-body">
         <p class="login-box-msg">{{ __('Login') }}</p>
 
-        <form action="{{ route('login') }}" method="post">
+        <form action="{{ route('signin') }}" method="post">
             @csrf
 
             <div class="input-group mb-3">
@@ -57,6 +67,13 @@
                 <a href="{{ route('password.request') }}">{{ __('Forgot Your Password?') }}</a>
             </p>
         @endif
+
+        @if (Route::has('register'))
+            <p class="mb-0">
+                <a href="{{ route('register') }}" class="text-center">{{ __('Register') }}</a>
+            </p>
+        @endif
+    
     </div>
     <!-- /.login-card-body -->
 @endsection
