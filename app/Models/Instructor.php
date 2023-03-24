@@ -9,9 +9,10 @@ class Instructor extends Model
 {
     use HasFactory;
 
-    
     protected $fillable = [
         'name',
         'bio',
+        'area_of_field', // add the new field here
+        'image'
     ];
 }

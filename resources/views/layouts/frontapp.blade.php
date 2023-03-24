@@ -45,14 +45,14 @@
                         <a class="nav-link" href="{{ route('signin') }}">Login</a>
                     </li>
                     @else
-                    @auth
+                    {{-- @auth
                     <a href="#" class="nav-link">
                         <i class="far fa-bell"></i>
                         @if(auth()->user()->unreadNotifications->count() > 0)
                             <span class="badge badge-danger">{{ auth()->user()->unreadNotifications->count() }}</span>
                         @endif
                     </a>
-                    @endauth
+                    @endauth --}}
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -89,5 +89,6 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/adminlte.min.js') }}" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js" integrity="sha512-wV7Yj1alIZDqZFCUQJy85VN+qvEIly93fIQAN7iqDFCPEucLCeNFz4r35FCo9s6WrpdDQPi80xbljXB8Bjtvcg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    @yield('scripts')
 </body>
 </html>

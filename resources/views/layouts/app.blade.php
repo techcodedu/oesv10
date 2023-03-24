@@ -100,8 +100,8 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="{{ asset('js/adminlte.min.js') }}" defer></script>
 <script src="{{ asset('js/custom.js') }}" defer></script>
-<script src="{{ asset('js/cleave.js') }}"></script>
-<script src="{{ asset('js/cleave.min.js') }}"></script>
+{{-- <script src="{{ asset('js/cleave.js') }}"></script>
+<script src="{{ asset('js/cleave.min.js') }}"></script> --}} 
 
 
 

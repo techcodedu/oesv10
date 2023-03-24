@@ -23,7 +23,7 @@
                 <a href="{{ route('admin.courseinfo') }}" class="nav-link">
                     <i class="nav-icon fas fa-compass"></i>
                     <p>
-                        {{ __('Course Information') }}
+                        {{ __('Course Management') }}
                         <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>
@@ -38,6 +38,12 @@
                         <a href="{{ route('courses.index') }}" class="nav-link">
                             <i class="fas fa-user-circle"></i>
                              {{ __('Courses') }}
+                        </a>
+                    </li>
+                     <li class="nav-item">
+                        <a href="{{ route('admin.instructors.index') }}" class="nav-link">
+                            <i class="fas fa-user-circle"></i>
+                             {{ __('Trainers') }}
                         </a>
                     </li>
                 </ul>

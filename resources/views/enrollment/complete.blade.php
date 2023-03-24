@@ -1,14 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Completion</title>
-</head>
-<body>
-    <p>Great we will review your application and and rquirements</p>
-    <p>You can track you enrollment status by login in here frorm time to to</p>
-    <p>and track the progress of your enrollment</p>
-</body>
-</html>
+@extends('layouts.frontapp')
+@section('title', 'Completed Steps')
+
+@section('content')
+<div class="modal fade" id="completionModal" tabindex="-1" role="dialog" aria-labelledby="completionModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="completionModalLabel">Processing your enrollment</h5>
+      </div>
+      <div class="modal-body text-center">
+        <div class="spinner-border text-primary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <p class="mt-2">Saving your data</p>
+      </div>
+    </div>
+  </div>
+</div>
+@endsection
+
+@section('scripts')
+<script>
+  $(function() {
+    $('#completionModal').modal({
+      backdrop: 'static',
+      keyboard: false
+    });
+    setTimeout(function() {
+      window.location.href = '{{ route("index") }}';
+    }, 4000); // Change the delay time (in milliseconds) as needed
+  });
+</script>
+@endsection

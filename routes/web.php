@@ -14,6 +14,7 @@ use App\Http\Controllers\Student;
 use App\Http\Controllers\StudentPayments;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\InstructorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,10 +55,19 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::get('/courses', [CourseControll::class, 'index'])->name('courses.index');
     Route::get('/courses/create', [CourseControll::class, 'create'])->name('courses.create');
     Route::post('/courses', [CourseControll::class, 'store'])->name('courses.store');
-    Route::get('/courses/{course}', [CourseControll::class, 'show'])->name('courses.show');
+    // Route::get('/courses/{course}', [CourseControll::class, 'show'])->name('courses.show');
     Route::get('/courses/{course}/edit', [CourseControll::class, 'edit'])->name('courses.edit');
     Route::put('/courses/{course}', [CourseControll::class, 'update'])->name('courses.update');
     Route::delete('/courses/{course}', [CourseControll::class, 'destroy'])->name('courses.destroy');
+
+    Route::get('/courses/instructors', [InstructorController::class, 'index'])->name('admin.instructors.index');
+    Route::get('/courses/instructors/create', [InstructorController::class, 'create'])->name('admin.instructors.create');
+    Route::post('/courses/instructors', [InstructorController::class, 'store'])->name('admin.instructors.store');
+    Route::get('/courses/instructors/{instructor}', [InstructorController::class, 'show'])->name('admin.instructors.show');
+    Route::get('/courses/instructors/{instructor}/edit', [InstructorController::class, 'edit'])->name('admin.instructors.edit');
+    Route::put('/courses/instructors/{instructor}', [InstructorController::class, 'update'])->name('instructors.update');
+    Route::delete('/courses/instructors/{instructor}', [InstructorController::class, 'destroy'])->name('instructors.destroy');
+
 
 
     Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
