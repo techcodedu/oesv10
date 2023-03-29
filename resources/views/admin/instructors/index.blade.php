@@ -21,8 +21,13 @@
             <div class="row">
                 <div class="col-12">
                     @if (session('success'))
-                        <div class="alert alert-success">
+                        <div class="alert alert-success" id="alert">
                             {{ session('success') }}
+                        </div>
+                    @endif
+                    @if(Session::has('error'))
+                        <div class="alert alert-danger" id="alert">
+                            {{ Session::get('error') }}
                         </div>
                     @endif
                     <div class="card">
@@ -49,13 +54,14 @@
                                             <td>{{ $instructor->area_of_field }}</td>
                                             <td>{{ $instructor->bio }}</td>
                                             <td>
-                                                <a href="{{ route('admin.instructors.show',$instructor->id) }}" class="btn btn-info">{{ __('View') }}</a>
-                                                <a href="{{ route('admin.instructors.edit',$instructor->id) }}" class="btn btn-primary">{{ __('Edit') }}</a>
-                                                <form action="{{ route('instructors.destroy',$instructor->id) }}" method="POST" style="display: inline-block;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">{{ __('Delete') }}</button>
-                                                </form>
+                                            <a href="#" class="btn btn-info" data-toggle="modal" data-target="#instructorModal" data-id="{{ $instructor->id }}">{{ __('View') }}</a>
+                                            <!-- Change the edit link to a button -->
+                                            <a href="{{ route('admin.instructors.edit', $instructor->id) }}" class="btn btn-primary">Edit</a>
+                                            <form onsubmit="return confirmDelete()" action="{{ route('instructors.destroy', $instructor->id) }}" method="POST" style="display: inline-block;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">{{ __('Delete') }}</button>
+                                            </form>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -71,5 +77,49 @@
             <!-- /.row -->
         </div><!-- /.container-fluid -->
     </section>
+    <div class="modal fade" id="instructorModal" tabindex="-1" role="dialog" aria-labelledby="instructorModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="instructorModalLabel">{{ __('Instructor Details') }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="instructor-details-container">
+                    <!-- Instructor details will be loaded here via AJAX -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close') }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- /.content -->
+    @section('scripts')
+        <script>
+            $(document).ready(function() {
+                $('#instructorModal').on('show.bs.modal', function(e) {
+                    var button = $(e.relatedTarget);
+                    var instructorId = button.data('id');
+                    var url = '{{ route("admin.instructors.show", ":id") }}';
+                    url = url.replace(':id', instructorId);
+
+                    $.ajax({
+                        url: url,
+                        type: 'GET',
+                        success: function(response) {
+                            $('#instructor-details-container').html(response);
+                        }
+                    });
+                });
+            });
+        </script>
+        <script>
+            function confirmDelete() {
+                return confirm('Are you sure you want to delete this instructor?');
+            }
+        </script>
+    @endsection
 @endsection

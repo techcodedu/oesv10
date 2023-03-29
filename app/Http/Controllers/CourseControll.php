@@ -60,12 +60,12 @@ class CourseControll extends Controller
             ->with('success', 'Course has been created successfully!');
     }
     public function edit(Course $course)
-{
-    $categories = Category::all();
-    $instructors = Instructor::all();
+    {
+        $categories = Category::all();
+        $instructors = Instructor::all();
 
-    return view('admin.courses.edit', compact('course', 'categories', 'instructors'));
-}
+        return view('admin.courses.edit', compact('course', 'categories', 'instructors'));
+    }
 
 public function update(Request $request, Course $course)
 {

@@ -15,6 +15,7 @@ use App\Http\Controllers\StudentPayments;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InstructorController;
+use App\Http\Controllers\AssessmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,8 +65,10 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::get('/courses/instructors/create', [InstructorController::class, 'create'])->name('admin.instructors.create');
     Route::post('/courses/instructors', [InstructorController::class, 'store'])->name('admin.instructors.store');
     Route::get('/courses/instructors/{instructor}', [InstructorController::class, 'show'])->name('admin.instructors.show');
-    Route::get('/courses/instructors/{instructor}/edit', [InstructorController::class, 'edit'])->name('admin.instructors.edit');
-    Route::put('/courses/instructors/{instructor}', [InstructorController::class, 'update'])->name('instructors.update');
+
+    Route::get('/instructors/{instructor}/edit', [InstructorController::class,'edit'])->name('admin.instructors.edit');
+    Route::put('/admin/instructors/{instructor}', [InstructorController::class, 'update'])->name('admin.instructors.update');
+    
     Route::delete('/courses/instructors/{instructor}', [InstructorController::class, 'destroy'])->name('instructors.destroy');
 
 
@@ -85,7 +88,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
 
     Route::get('/enrollment/{enrollment}', [CourseEnrollmentController::class, 'showEnrollmentDetails'])->name('admin.enrollment.show');
     Route::put('/admin/enrollments/{enrollment}', [CourseEnrollmentController::class, 'updateStatus'])->name('admin.enrollments.updateStatus');
-
+   
 
 
 Route::get('certificate', [Certificate::class, 'index'])->name('admin.certificate');
@@ -105,6 +108,12 @@ Route::put('profile', [\App\Http\Controllers\ProfileController::class, 'update']
 
 Route::group(['middleware' => ['role:student']], function () {
     Route::get('/enroll/{course}', [CourseEnrollmentController::class, 'enroll'])->name('enroll');
+
+     // ASSESSMENT
+    Route::get('/assessment/{course}/{user}/{enrollment_type}', [AssessmentController::class, 'showAssessmentForm'])->name('assessment.application');
+    Route::post('/assessment', [AssessmentController::class, 'submitApplication'])->name('assessment.submit');
+
+
 });
 Route::get('/courses/category/{id}', [FrontEndController::class, 'category'])->name('courses.category');
 

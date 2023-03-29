@@ -92,6 +92,7 @@
                                             <button type="button" class="btn btn-secondary" disabled>{{ __('Enrolled') }}</button>
                                         @else
                                             <a href="{{ route('enrollment.form', ['course' => $course->id, 'user' => Auth::id()]) }}" class="btn btn-primary">{{ __('Enroll Now') }}</a>
+                                            <a href="{{ route('assessment.application', ['course' => $course->id, 'user' => Auth::id(), 'enrollment_type' => 'assessment']) }}" class="btn btn-primary">{{ __('Assessment Only') }}</a>
                                         @endif
                                     @else
                                         <a href="{{ route('signin') }}" class="btn btn-primary">{{ __('Login to Enroll') }}</a>

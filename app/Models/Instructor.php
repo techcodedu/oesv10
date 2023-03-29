@@ -15,4 +15,16 @@ class Instructor extends Model
         'area_of_field', // add the new field here
         'image'
     ];
+
+    public function qualifications()
+    {
+        return $this->hasMany(Qualification::class);
+    }
+    // Inside the Instructor model
+
+    public function courses()
+    {
+        return $this->hasMany(Course::class);
+    }
+
 }
